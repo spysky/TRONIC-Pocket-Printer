@@ -1,0 +1,46 @@
+<Window x:Class="TRONIC_Pocket_Printer.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="520" Width="480"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Printer Name" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtPrinterName" Margin="0,2" />
+                <TextBlock Text="Port Name" Margin="0,4,0,0" />
+                <StackPanel Orientation="Horizontal" Margin="0,2">
+                    <ComboBox x:Name="CmbPort" Width="220" IsEditable="True" />
+                    <Button Content="Refresh Ports" Margin="6,0,0,0" Click="BtnRefreshPorts_Click" />
+                </StackPanel>
+                <TextBlock Text="Baud Rate" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtBaud" Margin="0,2" />
+                <TextBlock Text="Print Width (px)" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtWidth" Margin="0,2" />
+                <TextBlock Text="Threshold" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtThreshold" Margin="0,2" />
+                <TextBlock Text="Feed Dots" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtFeedDots" Margin="0,2" />
+                <TextBlock Text="Chunk Size" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtChunkSize" Margin="0,2" />
+                <TextBlock Text="Chunk Delay (ms)" Margin="0,4,0,0" />
+                <TextBox x:Name="TxtChunkDelay" Margin="0,2" />
+                <TextBlock Text="Dither Mode" Margin="0,4,0,0" />
+                <ComboBox x:Name="CmbDither" Margin="0,2">
+                    <ComboBoxItem Content="Threshold" />
+                    <ComboBoxItem Content="FloydSteinberg" />
+                </ComboBox>
+                <CheckBox x:Name="ChkAutoDetect" Content="Auto Detect Port" Margin="0,8,0,0" />
+                <CheckBox x:Name="ChkSavePreview" Content="Save processed preview (debug)" Margin="0,4,0,0" />
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+            <Button Content="Save" Width="80" Margin="0,0,6,0" Click="BtnSave_Click" IsDefault="True" />
+            <Button Content="Cancel" Width="80" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</Window>

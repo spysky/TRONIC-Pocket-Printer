@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <RootNamespace>TRONIC_Pocket_Printer</RootNamespace>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <Platforms>x64</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="**\*.cs" Exclude="Core\**\*.cs;Tests\**\*.cs;obj\**\*.cs;bin\**\*.cs" />
+    <Page Include="MainWindow.xaml" SubType="Designer" Generator="MSBuild:Compile" />
+    <Page Include="SettingsWindow.xaml" SubType="Designer" Generator="MSBuild:Compile" />
+    <Page Include="DiagnosticsWindow.xaml" SubType="Designer" Generator="MSBuild:Compile" />
+    <Page Include="NotesWindow.xaml" SubType="Designer" Generator="MSBuild:Compile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="Core\TronicPocketPrinter.Core.csproj" />
+  </ItemGroup>
+
+</Project>
