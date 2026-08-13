@@ -47,6 +47,13 @@
                 </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,0,12,4">
+                <TextBlock Text="Orientation:" VerticalAlignment="Center" Margin="0,0,4,0" />
+                <ComboBox x:Name="CmbOrientation" Width="120" SelectionChanged="Adjustment_Changed">
+                    <ComboBoxItem Content="Portrait" IsSelected="True" />
+                    <ComboBoxItem Content="Landscape" />
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,12,4">
                 <TextBlock Text="Dither:" VerticalAlignment="Center" Margin="0,0,4,0" />
                 <ComboBox x:Name="CmbDither" Width="130" SelectionChanged="Adjustment_Changed">
                     <ComboBoxItem Content="Threshold" IsSelected="True" />

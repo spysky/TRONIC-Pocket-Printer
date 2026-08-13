@@ -29,13 +29,32 @@ public partial class NotesWindow : Window
         _ => TextAlign.Left
     };
 
-    private MonoBitmap BuildMono() => TextRenderer.RenderMono(
-        TxtInput.Text,
-        _settings.PrintWidthPixels,
-        (float)SldFontSize.Value,
-        ChkBold.IsChecked == true,
-        SelectedAlign,
-        _settings.Threshold);
+    private MonoBitmap BuildMono()
+    {
+        bool landscape = CmbOrientation?.SelectedIndex == 1;
+
+        // Portrait: render at the 384px print width (lines wrap to paper width).
+        // Landscape: render on a wider canvas so lines run along the paper length,
+        // then rotate 90° so that long axis feeds along the (near-infinite) roll.
+        int renderWidth = landscape ? _settings.PrintWidthPixels * 3 : _settings.PrintWidthPixels;
+
+        using var bmp = TextRenderer.Render(
+            TxtInput.Text,
+            renderWidth,
+            (float)SldFontSize.Value,
+            ChkBold.IsChecked == true,
+            SelectedAlign);
+
+        var adj = new ImageAdjustments
+        {
+            PrintWidthPixels = _settings.PrintWidthPixels,
+            Threshold = _settings.Threshold,
+            RotationDegrees = landscape ? 90 : 0,
+            TrimWhiteMargins = landscape,
+            FitToWidth = false
+        };
+        return ImageProcessor.Process(bmp, adj);
+    }
 
     private void Option_Changed(object sender, RoutedEventArgs e)
     {

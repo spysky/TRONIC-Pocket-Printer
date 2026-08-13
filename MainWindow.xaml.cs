@@ -43,12 +43,19 @@ public partial class MainWindow : Window
         Contrast = (int)SldContrast.Value,
         Threshold = (int)SldThreshold.Value,
         Invert = ChkInvert.IsChecked == true,
-        RotationDegrees = _rotation,
+        RotationDegrees = (_rotation + OrientationRotation) % 360,
         FitToWidth = ChkFitWidth.IsChecked == true,
         TrimWhiteMargins = ChkTrim.IsChecked == true,
         DitherMode = CmbDither.SelectedIndex == 1 ? DitherMode.FloydSteinberg : DitherMode.Threshold,
         PrintWidthPixels = _settings.PrintWidthPixels
     };
+
+    /// <summary>
+    /// Extra rotation applied for the selected page orientation. Because the paper
+    /// is a continuous roll, Landscape simply rotates the content 90° so its long
+    /// side runs along the (near-infinite) paper feed.
+    /// </summary>
+    private int OrientationRotation => CmbOrientation?.SelectedIndex == 1 ? 90 : 0;
 
     private int _rotation;
 
